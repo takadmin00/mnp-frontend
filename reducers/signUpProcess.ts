@@ -7,13 +7,13 @@ export type UserState = {
     email: string | null;
     password: string | null;
     preferences: {
-      type: number | null,
-      dietetique: number | null,
-      bilan: number | null,
-      ethique: number | null,
-      local: number | null,
-      agriculture: number | null,
-    }
+      type: number | null;
+      dietetique: number | null;
+      bilan: number | null;
+      ethique: number | null;
+      local: number | null;
+      agriculture: number | null;
+    };
   };
 };
 
@@ -30,7 +30,7 @@ const initialState: UserState = {
       ethique: null,
       local: null,
       agriculture: null,
-    }
+    },
   },
 };
 
@@ -46,6 +46,8 @@ export const userSlice = createSlice({
     },
     addUserPreference: (state: UserState, action: PayloadAction<any>) => {
       state.value.preferences.type = action.payload.type;
+      console.log(state.value);
+      console.log(action.payload.type);
     },
     addUserType: (state: UserState, action: PayloadAction<any>) => {
       state.value.preferences.dietetique = action.payload.dietetique;
@@ -55,7 +57,7 @@ export const userSlice = createSlice({
       state.value.preferences.agriculture = action.payload.agriculture;
     },
     reset: (state: UserState) => {
-      state.value = initialState.value
+      state.value = initialState.value;
     },
   },
 });

@@ -1,18 +1,14 @@
-import React from "react";
+import { Button, Heading, Text } from "native-base";
+import React, { useEffect } from "react";
 import {
   ImageBackground,
   SafeAreaView,
   StyleSheet,
   useWindowDimensions,
   View,
-  Image,
 } from "react-native";
-import { Heading, Button, Text } from "native-base";
 import { useSelector } from "react-redux";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { UserState } from "../../reducers/user";
-import { useEffect } from "react";
-
 
 export default function WelcomeScreen({ navigation }) {
   const { height, width, fontScale } = useWindowDimensions();
@@ -21,12 +17,10 @@ export default function WelcomeScreen({ navigation }) {
   const user = useSelector((state: { user: UserState }) => state.user.value);
 
   useEffect(() => {
-
-    if (user.token !== null && user.token !== '' && user.token !== undefined) {
-        navigation.navigate('TabNavigator')
+    if (user.token !== null && user.token !== "" && user.token !== undefined) {
+      navigation.navigate("TabNavigator");
     }
-    
-  }, [])
+  }, []);
 
   return (
     //    <KeyboardAwareScrollView>
@@ -118,7 +112,7 @@ const makeStyles = (height, width, fontScale) => {
       paddingVertical: normalizeText(20),
     },
     title: {
-        paddingTop: adaptToHeight(10),
+      paddingTop: adaptToHeight(10),
       fontSize: normalizeText(40),
       height: adaptToHeight(45),
       textAlign: "center",

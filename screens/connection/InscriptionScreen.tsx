@@ -1,26 +1,26 @@
-import React from "react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {
+  Box,
+  Button,
+  Center,
+  FormControl,
+  Heading,
+  Input,
+  Text,
+  useToast,
+  VStack,
+} from "native-base";
+import React, { useState } from "react";
 import {
   SafeAreaView,
   StyleSheet,
   useWindowDimensions,
   View,
 } from "react-native";
-import {
-  Box,
-  Text,
-  Heading,
-  VStack,
-  FormControl,
-  Input,
-  Button,
-  Center,
-  useToast,
-} from "native-base";
+import { useDispatch } from "react-redux";
+
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import { addUserInfos, reset, UserState } from "../../reducers/signUpProcess";
+import { addUserInfos, reset } from "../../reducers/signUpProcess";
 
 export default function InscriptionScreen({ navigation }) {
   const { height, width, fontScale } = useWindowDimensions();
@@ -46,9 +46,15 @@ export default function InscriptionScreen({ navigation }) {
         toast.show({ description: "Veuillez remplir tous les champs." });
       } else {
         dispatch(addUserInfos(userInfos));
+        console.log(userInfos);
 
         navigation.navigate("Preference");
       }
+    };
+    const handleReset = () => {
+      dispatch(reset);
+      console.log("reset");
+      console.log(userInfos);
     };
 
     return (
@@ -126,6 +132,9 @@ export default function InscriptionScreen({ navigation }) {
 
             <Button mt="2" colorScheme="yellow" onPress={() => handleSubmit()}>
               S'INSCRIRE
+            </Button>
+            <Button mt="2" colorScheme="yellow" onPress={() => handleReset()}>
+              RESET CACHE
             </Button>
           </VStack>
           <Heading
